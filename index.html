@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Kahoot Academy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body class="bg-light">
+    <main class="container py-4 py-md-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10 col-xl-8">
+
+                <header class="text-center mb-4">
+                    <h1 class="display-6 fw-bold text-danger mb-2">Mini Kahoot Academy</h1>
+                    <p class="text-secondary mb-0">Responde correctamente y suma puntos en cada ronda.</p>
+                </header>
+
+                <section id="pantalla-inicio" class="card shadow-sm border-0">
+                    <div class="card-body p-4 p-md-5">
+                        <h2 class="h4 mb-3">Comenzar partida</h2>
+                        <p class="text-secondary mb-4">Ingresa tu nombre para iniciar una nueva partida.</p>
+
+                        <form id="form-iniciar" class="row g-3">
+                            <div class="col-12">
+                                <label for="nombre-jugador" class="form-label">Nombre del jugador</label>
+                                <input type="text" class="form-control form-control-lg" id="nombre-jugador"
+                                    placeholder="Ejemplo: Daniel" autocomplete="off">
+                            </div>
+                            <div class="col-12 d-grid d-md-flex justify-content-md-end">
+                                <button id="btn-iniciar" type="submit" class="btn btn-secondary btn-lg px-4">
+                                    Iniciar Quiz
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <section id="pantalla-quiz" class="card shadow-sm border-0 d-none">
+                    <div class="card-body p-4 p-md-5">
+
+                        <div
+                            class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge text-bg-primary fs-6" id="estado-jugador">Jugador: Daniel</span>
+                                <span class="badge text-bg-success fs-6" id="estado-puntaje">Puntaje: 0</span>
+                                <span class="badge text-bg-dark fs-6" id="estado-correctas">Correctas: 0</span>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="text-md-end">
+                                <p class="mb-1 fw-semibold" id="estado-pregunta">Pregunta 1 de 10</p>
+                                <div class="progress" role="progressbar" aria-label="Progreso del quiz"
+                                    aria-valuemin="0" aria-valuemax="100" style="height: 10px; min-width: 170px;">
+                                    <div id="barra-progreso" class="progress-bar progress-bar-striped"
+                                        style="width: 10%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <article class="mb-4">
+                            <h2 class="h4 mb-3" id="texto-pregunta">Aqui se mostrara el texto de la pregunta actual</h2>
+                            <div id="opciones-respuesta" class="d-grid gap-2">
+                            </div>
+                        </article>
+
+                        <div id="feedback-respuesta" class="alert alert-info d-none mb-4" role="alert">
+                            Resultado de la respuesta
+                        </div>
+
+                        <div class="d-grid d-md-flex justify-content-md-end">
+                            <button id="btn-siguiente" type="button" class="btn btn-secondary btn-lg px-4" disabled>
+                                Siguiente
+                            </button>
+                            <button id="btn-finalizado" type="button" class="btn btn-danger btn-lg px-4 d-none" disabled>
+                                Finalizado
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="pantalla-final" class="card shadow-sm border-0 d-none">
+                    <div class="card-body p-4 p-md-5 text-center">
+                        <h2 class="display-6 fw-bold mb-3">Quiz Finalizado</h2>
+                        <p class="text-secondary mb-4">Estos son tus resultados finales.</p>
+
+                        <div class="row g-3 text-start mb-4">
+                            <div class="col-12 col-md-4">
+                                <div class="border rounded-3 p-3 h-100 bg-body-tertiary">
+                                    <p class="small text-secondary mb-1">Jugador</p>
+                                    <p class="h5 mb-0" id="resultado-jugador">Daniel</p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="border rounded-3 p-3 h-100 bg-body-tertiary">
+                                    <p class="small text-secondary mb-1">Puntaje final</p>
+                                    <p class="h5 mb-0" id="resultado-puntaje">0</p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="border rounded-3 p-3 h-100 bg-body-tertiary">
+                                    <p class="small text-secondary mb-1">Respuestas correctas</p>
+                                    <p class="h5 mb-0" id="resultado-correctas">0 de 10</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-grid d-md-flex justify-content-md-center">
+                            <button id="btn-reiniciar" type="button" class="btn btn-primary btn-lg px-4">
+                                Jugar Nuevamente
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <script src="./app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
